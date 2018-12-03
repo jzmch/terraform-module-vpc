@@ -1,3 +1,10 @@
+locals {
+  common_tags = {
+    Project     = "${var.project_name}"
+    Environment = "${var.environment}"
+  }
+}
+
 variable "project_name" {
   type = "string"
 }
@@ -35,4 +42,39 @@ variable "enable_dns_hostnames" {
 
 variable "enable_dns_support" {
   default = true
+}
+
+variable "additional_vpc_tags" {
+  type = "map"
+  default = {}
+}
+
+variable "additional_igw_tags" {
+  type = "map"
+  default = {}
+}
+
+variable "additional_nat_gw_tags" {
+  type = "map"
+  default = {}
+}
+
+variable "additional_private_subnet_tags" {
+  type = "map"
+  default = {}
+}
+
+variable "additional_private_route_table_tags" {
+  type = "map"
+  default = {}
+}
+
+variable "additional_public_subnet_tags" {
+  type = "map"
+  default = {}
+}
+
+variable "additional_public_route_table_tags" {
+  type = "map"
+  default = {}
 }

@@ -4,22 +4,14 @@ resource "aws_subnet" "private" {
   cidr_block        = "${var.private_subnet_cidr_blocks[count.index]}"
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
-  tags {
-    Name        = "${var.project_name}-private-subnet-${count.index + 1}"
-    Project     = "${var.project_name}"
-    Environment = "${var.environment}"
-  }
+  tags = "${merge(local.common_tags, map("Name", "${var.project_name}-private-subnet-${count.index + 1}"), var.additional_private_subnet_tags)}"
 }
 
 resource "aws_route_table" "private" {
   count  = "${length(var.private_subnet_cidr_blocks)}"
   vpc_id = "${aws_vpc.main.id}"
 
-  tags {
-    Name        = "${var.project_name}-private-route-table-${count.index + 1}"
-    Project     = "${var.project_name}"
-    Environment = "${var.environment}"
-  }
+  tags = "${merge(local.common_tags, map("Name", "${var.project_name}-private-route-table-${count.index + 1}"), var.additional_private_route_table_tags)}"
 }
 
 resource "aws_route" "with_created_eips" {
