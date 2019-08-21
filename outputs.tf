@@ -3,15 +3,15 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-  value = [aws_subnet.public.*.id]
+  value = aws_subnet.public.*.id
 }
 
 output "private_subnet_ids" {
-  value = [aws_subnet.private.*.id]
+  value = aws_subnet.private.*.id
 }
 
 output "subnet_availability_zones" {
-  value = [aws_subnet.private.*.availability_zone]
+  value = aws_subnet.private.*.availability_zone
 }
 
 output "private_route_table_ids" {
