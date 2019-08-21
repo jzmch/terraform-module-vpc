@@ -1,34 +1,34 @@
 locals {
   common_tags = {
-    Project     = "${var.project_name}"
-    Environment = "${var.environment}"
+    Project     = var.project_name
+    Environment = var.environment
   }
 }
 
 variable "project_name" {
-  type = "string"
+  type = string
 }
 
 variable "environment" {
-  type = "string"
+  type = string
 }
 
 variable "vpc_cidr_block" {
-  type = "string"
+  type = string
 }
 
 variable "public_subnet_cidr_blocks" {
-  type    = "list"
+  type    = list(string)
   default = []
 }
 
 variable "private_subnet_cidr_blocks" {
-  type    = "list"
+  type    = list(string)
   default = []
 }
 
 variable "nat_gateway_elastic_ips" {
-  type    = "list"
+  type    = list(string)
   default = []
 }
 
@@ -45,36 +45,37 @@ variable "enable_dns_support" {
 }
 
 variable "additional_vpc_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "additional_igw_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "additional_nat_gw_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "additional_private_subnet_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "additional_private_route_table_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "additional_public_subnet_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
 
 variable "additional_public_route_table_tags" {
-  type = "map"
+  type    = map(string)
   default = {}
 }
+
